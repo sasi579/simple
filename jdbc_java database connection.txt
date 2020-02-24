@@ -1,0 +1,37 @@
+
+//1
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class Ass {
+	
+	
+	public static void main(String[] args) throws SQLException, ClassNotFoundException {
+
+		String connection_string = "jdbc:sqlserver://localhost:1433;databaseName=mca";
+		String username = "sa";
+		String password = "kongu";
+	//2	
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+	//3
+		Connection conn = DriverManager.getConnection(connection_string,username,password);
+		
+         //4
+		Statement st = conn.createStatement();
+		
+         //5
+		ResultSet rs = st.executeQuery("select * from users");
+		//6
+		while (rs.next()) {
+				System.out.println("Name : "+rs.getString("1"));
+			
+		}
+		//7
+		conn.close();
+		
+		
+	}
+}
