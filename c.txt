@@ -1,0 +1,277 @@
+SQL> create table employee
+  2  (name varchar(10),
+  3  emp_id int,
+  4  emp_add varchar(20),
+  5  emp_rollno int,
+  6  emp_salary int);
+create table employee
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> create table employee details
+  2  (name varchar(10),
+  3  emp_id int,
+  4  emp_add varchar(20),
+  5  emp_rollno int,
+  6  emp_salary_int);
+create table employee details
+                      *
+ERROR at line 1:
+ORA-00922: missing or invalid option 
+
+
+SQL> create table employee_details
+  2  (name varchar(10),
+  3  emp_id int,
+  4  emp_add varchar(20),
+  5  emp_rollno int,
+  6  emp_salary int);
+
+Table created.
+
+SQL> desc employee_details;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NAME                                               VARCHAR2(10)
+ EMP_ID                                             NUMBER(38)
+ EMP_ADD                                            VARCHAR2(20)
+ EMP_ROLLNO                                         NUMBER(38)
+ EMP_SALARY                                         NUMBER(38)
+
+SQL> insert into employee_details values('velu',1000,'erode',51,10000);
+
+1 row created.
+
+SQL> select * from employee_details;
+
+NAME           EMP_ID EMP_ADD              EMP_ROLLNO EMP_SALARY                
+---------- ---------- -------------------- ---------- ----------                
+velu             1000 erode                        51      10000                
+
+SQL> alter table employee_details add location vaechar(20);
+alter table employee_details add location vaechar(20)
+                                                  *
+ERROR at line 1:
+ORA-01735: invalid ALTER TABLE option 
+
+
+SQL> alter table employee_details add location varchar(20);
+
+Table altered.
+
+SQL> insert into employee_details values('somu',2000,'arachalur',61,20000,'chennai');
+
+1 row created.
+
+SQL> select * from employee_details;
+
+NAME           EMP_ID EMP_ADD              EMP_ROLLNO EMP_SALARY                
+---------- ---------- -------------------- ---------- ----------                
+LOCATION                                                                        
+--------------------                                                            
+velu             1000 erode                        51      10000                
+                                                                                
+                                                                                
+somu             2000 arachalur                    61      20000                
+chennai                                                                         
+                                                                                
+
+SQL> insert into employee_details values('raju',3000,'poondurai',71,30000,'bangalore');
+
+1 row created.
+
+SQL> select * from employee_details;
+
+NAME           EMP_ID EMP_ADD              EMP_ROLLNO EMP_SALARY                
+---------- ---------- -------------------- ---------- ----------                
+LOCATION                                                                        
+--------------------                                                            
+velu             1000 erode                        51      10000                
+                                                                                
+                                                                                
+somu             2000 arachalur                    61      20000                
+chennai                                                                         
+                                                                                
+raju             3000 poondurai                    71      30000                
+bangalore                                                                       
+                                                                                
+
+SQL> insert into employee_details values('babu',4000,'perundurai',81,40000,'salem');
+
+1 row created.
+
+SQL> select * from employee_details;
+
+NAME           EMP_ID EMP_ADD              EMP_ROLLNO EMP_SALARY                
+---------- ---------- -------------------- ---------- ----------                
+LOCATION                                                                        
+--------------------                                                            
+velu             1000 erode                        51      10000                
+                                                                                
+                                                                                
+somu             2000 arachalur                    61      20000                
+chennai                                                                         
+                                                                                
+raju             3000 poondurai                    71      30000                
+bangalore                                                                       
+                                                                                
+
+NAME           EMP_ID EMP_ADD              EMP_ROLLNO EMP_SALARY                
+---------- ---------- -------------------- ---------- ----------                
+LOCATION                                                                        
+--------------------                                                            
+babu             4000 perundurai                   81      40000                
+salem                                                                           
+                                                                                
+
+SQL> select * from employee_details where location='chennai';
+
+NAME           EMP_ID EMP_ADD              EMP_ROLLNO EMP_SALARY                
+---------- ---------- -------------------- ---------- ----------                
+LOCATION                                                                        
+--------------------                                                            
+somu             2000 arachalur                    61      20000                
+chennai                                                                         
+                                                                                
+
+SQL> select max(salary) from employee_details;
+select max(salary) from employee_details
+           *
+ERROR at line 1:
+ORA-00904: "SALARY": invalid identifier 
+
+
+SQL> select max(Salary) from employee_details;
+select max(Salary) from employee_details
+           *
+ERROR at line 1:
+ORA-00904: "SALARY": invalid identifier 
+
+
+SQL> select MAX(salary) from employee_details;
+select MAX(salary) from employee_details
+           *
+ERROR at line 1:
+ORA-00904: "SALARY": invalid identifier 
+
+
+SQL> select max(SALARY) from employee_details;
+select max(SALARY) from employee_details
+           *
+ERROR at line 1:
+ORA-00904: "SALARY": invalid identifier 
+
+
+SQL> select MAX(salary) from employee_details;
+select MAX(salary) from employee_details
+           *
+ERROR at line 1:
+ORA-00904: "SALARY": invalid identifier 
+
+
+SQL> select MAX(Salary) from employee_details;
+select MAX(Salary) from employee_details
+           *
+ERROR at line 1:
+ORA-00904: "SALARY": invalid identifier 
+
+
+SQL> select max(salary) from employee_details;
+select max(salary) from employee_details
+           *
+ERROR at line 1:
+ORA-00904: "SALARY": invalid identifier 
+
+
+SQL> desc employee_details
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NAME                                               VARCHAR2(10)
+ EMP_ID                                             NUMBER(38)
+ EMP_ADD                                            VARCHAR2(20)
+ EMP_ROLLNO                                         NUMBER(38)
+ EMP_SALARY                                         NUMBER(38)
+ LOCATION                                           VARCHAR2(20)
+
+SQL> select max(emp_salary) from employee_details;
+
+MAX(EMP_SALARY)                                                                 
+---------------                                                                 
+          40000                                                                 
+
+SQL> select min(emp_salary) from employee_details;
+
+MIN(EMP_SALARY)                                                                 
+---------------                                                                 
+          10000                                                                 
+
+SQL> select avg(emp_salary) from employee_details;
+
+AVG(EMP_SALARY)                                                                 
+---------------                                                                 
+          25000                                                                 
+
+SQL> select * from employee_details where name like '%r';
+
+no rows selected
+
+SQL> select * from employee_details where name like 'r%';
+
+NAME           EMP_ID EMP_ADD              EMP_ROLLNO EMP_SALARY                
+---------- ---------- -------------------- ---------- ----------                
+LOCATION                                                                        
+--------------------                                                            
+raju             3000 poondurai                    71      30000                
+bangalore                                                                       
+                                                                                
+
+SQL> select * from employee_details where salary between 10000 and 40000;
+select * from employee_details where salary between 10000 and 40000
+                                     *
+ERROR at line 1:
+ORA-00904: "SALARY": invalid identifier 
+
+
+SQL> select * from employee_details where emp_salary between 10000 and 40000;
+
+NAME           EMP_ID EMP_ADD              EMP_ROLLNO EMP_SALARY                
+---------- ---------- -------------------- ---------- ----------                
+LOCATION                                                                        
+--------------------                                                            
+velu             1000 erode                        51      10000                
+                                                                                
+                                                                                
+somu             2000 arachalur                    61      20000                
+chennai                                                                         
+                                                                                
+raju             3000 poondurai                    71      30000                
+bangalore                                                                       
+                                                                                
+
+NAME           EMP_ID EMP_ADD              EMP_ROLLNO EMP_SALARY                
+---------- ---------- -------------------- ---------- ----------                
+LOCATION                                                                        
+--------------------                                                            
+babu             4000 perundurai                   81      40000                
+salem                                                                           
+                                                                                
+
+SQL> select * from employee_details where emp_salary between 10000 and 30000;
+
+NAME           EMP_ID EMP_ADD              EMP_ROLLNO EMP_SALARY                
+---------- ---------- -------------------- ---------- ----------                
+LOCATION                                                                        
+--------------------                                                            
+velu             1000 erode                        51      10000                
+                                                                                
+                                                                                
+somu             2000 arachalur                    61      20000                
+chennai                                                                         
+                                                                                
+raju             3000 poondurai                    71      30000                
+bangalore                                                                       
+                                                                                
+
+SQL> spool off;
